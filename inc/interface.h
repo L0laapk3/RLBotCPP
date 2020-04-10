@@ -1,10 +1,10 @@
 #pragma once
-#include "rlbot_generated.h"
+#include "rlbot/rlbot_generated.h"
 
-#include "controller.h"
-#include "matchsettings.h"
-#include "rlbot.h"
-#include "statesetting.h"
+#include "rlbot/controller.h"
+#include "rlbot/matchsettings.h"
+#include "rlbot/rlbot.h"
+#include "rlbot/statesetting.h"
 
 #include <string>
 
@@ -37,6 +37,7 @@ public:
   static void Free(void *ptr);
 
   static ByteBuffer UpdateLiveDataPacketFlatbuffer();
+  static ByteBuffer FreshLiveDataPacketFlatbuffer(int timeoutMillis, int key);
   static ByteBuffer UpdateFieldInfoFlatbuffer();
   static ByteBuffer GetBallPrediction();
   static ByteBuffer GetMatchSettings();

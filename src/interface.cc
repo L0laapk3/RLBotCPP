@@ -1,9 +1,9 @@
-#include "interface.h"
+#include "rlbot/interface.h"
 
-#include "platform.h"
+#include <flatbuffers/flatbuffers.h>
 
-#include "flatbuffers/flatbuffers.h"
-#include "rlbot_generated.h"
+#include "rlbot/platform.h"
+#include "rlbot/rlbot_generated.h"
 
 namespace rlbot {
 typedef bool (*BoolFunc)(void);
@@ -11,11 +11,13 @@ typedef ByteBuffer (*ByteBufferFunc)(void);
 typedef void (*VoidFunc)(void *);
 typedef int (*SendPacketFunc)(void *, int);
 typedef ByteBuffer (*ReceiveQuickChatFunc)(int, int, int);
+typedef ByteBuffer (*FreshLiveDataPacketFlatbufferFunc)(int, int);
 
 BoolFunc _isInitialized;
 VoidFunc _free;
 
 ByteBufferFunc _updateLiveDataPacketFlatbuffer;
+FreshLiveDataPacketFlatbufferFunc _freshLiveDataPacketFlatbuffer;
 ByteBufferFunc _updateFieldInfoFlatbuffer;
 ByteBufferFunc _getBallPrediction;
 ByteBufferFunc _getMatchSettings;

@@ -1,7 +1,7 @@
-#include "botprocess.h"
+#include "rlbot/botprocess.h"
 
-#include "packets.h"
-#include "platform.h"
+#include "rlbot/packets.h"
+#include "rlbot/platform.h"
 
 namespace rlbot {
 void BotProcess::Start() {
@@ -23,7 +23,7 @@ void BotProcess::BotThread() const {
   }
 
   while (running) {
-    ByteBuffer flatbufferData = Interface::UpdateLiveDataPacketFlatbuffer();
+    ByteBuffer flatbufferData = Interface::FreshLiveDataPacketFlatbuffer(30, bot->index);
 
     // Don't try to read the packets when they are very small.
     if (flatbufferData.size > 4) {
